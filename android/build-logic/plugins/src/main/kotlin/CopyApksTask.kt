@@ -46,10 +46,7 @@ interface WorkItemParameters: WorkParameters, Serializable {
 abstract class WorkItem @Inject constructor(private val workItemParameters: WorkItemParameters)
     : WorkAction<WorkItemParameters> {
     override fun execute() {
-        // business logic that gradle executes - copying artifact
-        workItemParameters.outputApkFile.get().asFile.delete()
-        workItemParameters.inputApkFile.asFile.get().copyTo(
-            workItemParameters.outputApkFile.get().asFile)
+        workItemParameters.outputApkFile.asFile.get().writeText("This transform is bogus!")
     }
 }
 
